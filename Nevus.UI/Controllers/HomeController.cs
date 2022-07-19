@@ -24,7 +24,7 @@ namespace Nevus.UI.Controllers
 
         public IActionResult Index( )
         {
-
+            _logger.Log(LogLevel.Critical, "Ejemplo de logeer");
             var ciudades = _ciudadService.ObtenerTodas();
             return View();
         }

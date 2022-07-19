@@ -1,0 +1,13 @@
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.deps.json
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.dll
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.pdb
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Models.dll
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Models.pdb
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.AssemblyReference.cache
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.AssemblyInfoInputs.cache
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.AssemblyInfo.cs
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.CoreCompileInputs.cache
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.CopyComplete
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.dll
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.pdb

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Nevus.Services/1.0.0": {
+        "dependencies": {
+          "Nevus.Models": "1.0.0"
+        },
+        "runtime": {
+          "Nevus.Services.dll": {}
+        }
+      },
+      "Nevus.Models/1.0.0": {
+        "runtime": {
+          "Nevus.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Nevus.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nevus.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

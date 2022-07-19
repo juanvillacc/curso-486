@@ -27,7 +27,8 @@ namespace Nevus.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ICiudadService, CiudadService>();   
+            services.AddSingleton<ICiudadService, CiudadService>();
+            services.AddSingleton<IDepartamentoService, DepartamentoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

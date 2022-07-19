@@ -5,6 +5,21 @@ namespace Nevus.Services
 {
     public class CiudadService  : ICiudadService
     {
+        public void Actualizar(Ciudad ciudad)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Eliminar(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int Ingresar(Ciudad ciudad)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Ciudad> ObtenerTodas()
         {
             var resultados = new List<Ciudad>

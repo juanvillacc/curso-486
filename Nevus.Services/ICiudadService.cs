@@ -8,5 +8,8 @@ namespace Nevus.Services
     public interface ICiudadService
     {
         List<Ciudad> ObtenerTodas();
+        int Ingresar(Ciudad ciudad);
+        void Actualizar(Ciudad ciudad);
+        void Eliminar(int id);
     }
 }

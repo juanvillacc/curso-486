@@ -14,18 +14,22 @@ namespace Nevus.UI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICiudadService _ciudadService;
+        private readonly IDepartamentoService _departamentoService;
         public HomeController(ILogger<HomeController> logger,
-            ICiudadService ciudadService
+            ICiudadService ciudadService,
+            IDepartamentoService departamentoService
             )
         {
             _logger = logger;
             _ciudadService = ciudadService;
+            _departamentoService = departamentoService; 
         }
 
         public IActionResult Index( )
         {
             _logger.Log(LogLevel.Critical, "Ejemplo de logeer");
             var ciudades = _ciudadService.ObtenerTodas();
+            var departamentos = _departamentoService.ObtenerTodas();    
             return View();
         }
 

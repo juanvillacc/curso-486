@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nevus.Services;
+using Nevus.UI.Filters;
 using Nevus.UI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Nevus.UI.Controllers
 {
+    [LogActionFilter]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -22,9 +22,10 @@ namespace Nevus.UI.Controllers
         /// Muestra el listado de ciudades
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public IActionResult Index()
         {
-            return View(_ciudadService.ObtenerTodas().FirstOrDefault().Nombre);
+            return View(_ciudadService.ObtenerTodas());
         }
         /// <summary>
         /// Muestra la informacion que se va a editar
@@ -32,7 +33,7 @@ namespace Nevus.UI.Controllers
         /// <param name="IdCiudad"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("Modificar")]
+        [Route("Editar")]
         public IActionResult Editar(int IdCiudad)
         {
 
@@ -50,11 +51,12 @@ namespace Nevus.UI.Controllers
             return View(ciudad);
         }
         /// <summary>
-        /// Actualizacion de la base de datos 
+        /// Actualizacion de la base de datos dependiendo del el id de la ciudad
         /// </summary>
         /// <param name="ciudad"></param>
         /// <returns></returns>
-        public IActionResult Editar(Ciudad ciudad)
+        [HttpPost]
+        public IActionResult Guardar(Ciudad ciudad)
         {
 
             return View();
@@ -64,18 +66,9 @@ namespace Nevus.UI.Controllers
         /// </summary>
         /// <param name="IdCiudad"></param>
         /// <returns></returns>
+        [HttpDelete]
         public IActionResult Eliminar(int IdCiudad)
         {
-            return View();
-        }
-        /// <summary>
-        /// Inserta un registro en la base de datos
-        /// </summary>
-        /// <param name="ciudad"></param>
-        /// <returns></returns>
-        public IActionResult Insertar(Ciudad ciudad)
-        {
-
             return View();
         }
     }

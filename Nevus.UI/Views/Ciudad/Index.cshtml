@@ -1,0 +1,36 @@
+﻿@using Nevus.Models
+@using Nevus.Services
+@model IEnumerable<Nevus.Models.Ciudad>
+
+
+<h1>Listado de ciudades</h1>
+
+<p>
+<a asp-action="Editar">Nueva ciudad</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+        
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+       {
+           <tr>
+               <td>@Html.DisplayFor(model => item.Id)</td>
+
+               <td>@Html.DisplayFor(model => item.Nombre)</td>
+               <td>@Html.ActionLink("Editar","Editar", new { IdCiudad = item.Id})</td>
+               <td>@Html.ActionLink("Eliminar","Eliminar", new { IdCiudad = item.Id})</td>
+           </tr>
+       }
+
+
+    </tbody>
+
+
+</table>

@@ -1,25 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Nevus.Models;
+using Nevus.Services;
+using System.Linq;
 
 namespace Nevus.UI.Controllers
 {
+    //[Route("Ciudades")]
     public class CiudadController : Controller
     {
+        private readonly ICiudadService _ciudadService;
+        private readonly ILogger<CiudadController> _logger;
+        public CiudadController(ICiudadService ciudadService,
+            ILogger<CiudadController> logger)
+        {
+            _ciudadService = ciudadService;
+            _logger = logger;   
+        }
+
         /// <summary>
         /// Muestra el listado de ciudades
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
         {
-            return View();
+            return View(_ciudadService.ObtenerTodas().FirstOrDefault().Nombre);
         }
         /// <summary>
         /// Muestra la informacion que se va a editar
         /// </summary>
         /// <param name="IdCiudad"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("Modificar")]
         public IActionResult Editar(int IdCiudad)
         {
+
+            _logger.Log(LogLevel.Information,
+                
+                $"Se inicio el llamado a la action ${RouteData.Values[""]} del controlador ${RouteData.Values[""]} ");
+
+            if ((int)RouteData.Values["IdCiudad"] == 0)
+            {
+                return Content("Parametro no valido");
+
+            }
             var ciudad = new Ciudad();
 
             return View(ciudad);

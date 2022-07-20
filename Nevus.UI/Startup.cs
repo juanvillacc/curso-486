@@ -69,7 +69,7 @@ namespace Nevus.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Ciudad}/{action=Index}/{id?}");
             });
 
         }

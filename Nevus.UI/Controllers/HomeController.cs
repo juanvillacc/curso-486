@@ -29,7 +29,7 @@ namespace Nevus.UI.Controllers
         {
             _logger.Log(LogLevel.Critical, "Ejemplo de logeer");
             var ciudades = _ciudadService.ObtenerTodas();
-            var departamentos = _departamentoService.ObtenerTodas();    
+            ViewBag.Mensaje = _departamentoService.ObtenerTodas().First().Nombre;    
             return View();
         }
 

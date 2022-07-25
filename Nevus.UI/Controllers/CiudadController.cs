@@ -41,13 +41,13 @@ namespace Nevus.UI.Controllers
                 
                 $"Se inicio el llamado a la action ${RouteData.Values[""]} del controlador ${RouteData.Values[""]} ");
 
-            if ((int)RouteData.Values["IdCiudad"] == 0)
+            /*if ((int)RouteData.Values["IdCiudad"] == 0)
             {
                 return Content("Parametro no valido");
 
-            }
-            var ciudad = new Ciudad();
-
+            }*/
+            var ciudad = _ciudadService.ObtenerTodas()
+                .Where(c => c.Id == IdCiudad).FirstOrDefault();
             return View(ciudad);
         }
         /// <summary>
@@ -58,17 +58,19 @@ namespace Nevus.UI.Controllers
         [HttpPost]
         public IActionResult Guardar(Ciudad ciudad)
         {
-
-            return View();
+            /// guardar el registros 
+            /// retornar al listado
+            return RedirectToAction("Index");
         }
         /// <summary>
         /// Eliminar el registro en la base de datos
         /// </summary>
         /// <param name="IdCiudad"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpPost]
         public IActionResult Eliminar(int IdCiudad)
         {
+            // logica para borrar
             return View();
         }
     }

@@ -58,9 +58,25 @@ namespace Nevus.UI.Controllers
         [HttpPost]
         public IActionResult Guardar(Ciudad ciudad)
         {
-            /// guardar el registros 
-            /// retornar al listado
-            return RedirectToAction("Index");
+            if (ciudad.Id<0)
+            {
+                ModelState.AddModelError("Id" ,"El codigo no puede ser negativo");
+
+
+            }
+             
+            if (ModelState.IsValid){
+                /// guardar el registros 
+                /// retornar al listado
+                return RedirectToAction("Index");
+                
+            }
+            else
+            {
+                return View("Editar", ciudad);
+
+            } 
+
         }
         /// <summary>
         /// Eliminar el registro en la base de datos

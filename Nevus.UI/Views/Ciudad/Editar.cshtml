@@ -22,9 +22,15 @@
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                 @Html.LabelFor(Model => Model.EstaActiva)
+                   @Html.EditorFor(Model => Model.EstaActiva)
+            </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
+            @Html.ValidationSummary();
+
         </form>
          <form asp-action="Eliminar" asp-route-IdCiudad="@Model.Id" >
             <div class="form-group">

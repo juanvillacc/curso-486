@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="ArchivosStaticos\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
   <ItemGroup>

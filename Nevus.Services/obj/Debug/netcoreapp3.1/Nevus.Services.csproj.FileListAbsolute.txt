@@ -1,7 +1,9 @@
 C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.deps.json
 C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.dll
 C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.pdb
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Data.dll
 C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Models.dll
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Data.pdb
 C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Models.pdb
 C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.AssemblyReference.cache
 C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.GeneratedMSBuildEditorConfig.editorconfig

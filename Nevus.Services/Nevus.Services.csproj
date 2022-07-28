@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nevus.Data\Nevus.Data.csproj" />
     <ProjectReference Include="..\Nevus.Models\Nevus.Models.csproj" />
   </ItemGroup>
 

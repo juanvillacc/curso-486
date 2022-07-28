@@ -15,7 +15,7 @@ namespace Nevus.UI.Controllers
             ILogger<CiudadController> logger)
         {
             _ciudadService = ciudadService;
-            _logger = logger;   
+            _logger = logger;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Nevus.UI.Controllers
         {
 
             _logger.Log(LogLevel.Information,
-                
+
                 $"Se inicio el llamado a la action ${RouteData.Values[""]} del controlador ${RouteData.Values[""]} ");
 
             /*if ((int)RouteData.Values["IdCiudad"] == 0)
@@ -48,7 +48,7 @@ namespace Nevus.UI.Controllers
             }*/
             var ciudad = _ciudadService.ObtenerTodas()
                 .Where(c => c.Id == IdCiudad).FirstOrDefault();
-            return View(ciudad);
+            return View(ciudad ?? new Ciudad());
         }
         /// <summary>
         /// Actualizacion de la base de datos dependiendo del el id de la ciudad
@@ -58,24 +58,34 @@ namespace Nevus.UI.Controllers
         [HttpPost]
         public IActionResult Guardar(Ciudad ciudad)
         {
-            if (ciudad.Id<0)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("Id" ,"El codigo no puede ser negativo");
 
+                if (ciudad.Id < 0)
+                {
+                    ModelState.AddModelError("Id", "El codigo no puede ser negativo");
+                    return View("Editar", ciudad);
+                }
+                else
+                {
 
-            }
-             
-            if (ModelState.IsValid){
-                /// guardar el registros 
-                /// retornar al listado
-                return RedirectToAction("Index");
-                
+                    if (ciudad.Id > 0)
+                    {
+                        _ciudadService.Actualizar(ciudad);
+                    }
+                    else
+                    {
+                        _ciudadService.Ingresar(ciudad);
+                    }
+
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
                 return View("Editar", ciudad);
 
-            } 
+            }
 
         }
         /// <summary>
@@ -87,7 +97,8 @@ namespace Nevus.UI.Controllers
         public IActionResult Eliminar(int IdCiudad)
         {
             // logica para borrar
-            return View();
+            _ciudadService.Eliminar(IdCiudad);
+            return RedirectToAction("Index");
         }
     }
 }

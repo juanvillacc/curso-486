@@ -1,43 +1,37 @@
-﻿using Nevus.Models;
+﻿using Nevus.Data.Repositories;
+using Nevus.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Nevus.Services
 {
     public class CiudadService  : ICiudadService
     {
+        private readonly ICiudadRepository _ciudadRepository;  
+        public CiudadService(ICiudadRepository ciudadRepository)
+        {
+            _ciudadRepository = ciudadRepository;   
+        }
+
         public void Actualizar(Ciudad ciudad)
         {
-            throw new System.NotImplementedException();
+            _ciudadRepository.Actualizar(ciudad);
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(Int64 id)
         {
-            throw new System.NotImplementedException();
+            _ciudadRepository.Eliminar(id);
         }
 
-        public int Ingresar(Ciudad ciudad)
+        public void Ingresar(Ciudad ciudad)
         {
-            throw new System.NotImplementedException();
+            _ciudadRepository.Ingresar(ciudad);
         }
 
         public List<Ciudad> ObtenerTodas()
         {
-            var resultados = new List<Ciudad>
-            {
-                new Ciudad
-                {
-                    Id = 1,
-                    Nombre = "Ciudad1"
-                },
-
-                new Ciudad
-                {
-                    Id = 2,
-                    Nombre = "Ciudad2"
-                },
-            };
-
-            return resultados;
+            return _ciudadRepository.Obtener().ToList();
         }
     }
 }

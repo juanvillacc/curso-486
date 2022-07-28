@@ -1,13 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Nevus.Models
 {
     public class Ciudad
     {
+        [Key]
         [Required(ErrorMessage = "Debe llenar el codigo")]
         [DisplayName("Codigo")]
-        public int Id { get; set; }
+        public Int64 Id { get; set; }
         [Required(ErrorMessage = "Debe llenar la ciudad")]
         [NoNumbersValidator(ErrorMessage = "La ciudad solo debe contener letras")]
         [DataType(DataType.MultilineText)]

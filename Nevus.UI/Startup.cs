@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Nevus.Data;
 using Nevus.Data.Repositories;
 using Nevus.Services;
+using Nevus.UI.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,6 +34,9 @@ namespace Nevus.UI
             var cc = Configuration.GetConnectionString("Server");
 
             services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(cc));
+            services.AddDbContext<IdentityAppDbContext>(options => options.UseSqlServer(cc));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<IdentityAppDbContext>();
             services.AddControllersWithViews();
             services.AddTransient<ICiudadRepository, CiudadRepository>();
             services.AddTransient<ICiudadService, CiudadService>();
@@ -51,9 +56,10 @@ namespace Nevus.UI
 
             if (env.IsDevelopment())
             {
+                Console.WriteLine("Entro por desarrollo");
                 app.UseDeveloperExceptionPage();
             }
-            else
+            else if (env.IsStaging() || env.IsProduction())
             {
                 Console.WriteLine("Entro por production");
                 app.UseExceptionHandler("/Home/Error");
@@ -70,7 +76,7 @@ namespace Nevus.UI
             }); ;
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nevus.Models;
 using Nevus.Services;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace Nevus.UI.Controllers
 {
-    //[Route("Ciudades")]
+    //[Authorize]
     public class CiudadController : Controller
     {
         private readonly ICiudadService _ciudadService;
@@ -61,25 +62,34 @@ namespace Nevus.UI.Controllers
             if (ModelState.IsValid)
             {
 
-                if (ciudad.Id < 0)
-                {
-                    ModelState.AddModelError("Id", "El codigo no puede ser negativo");
-                    return View("Editar", ciudad);
-                }
-                else
-                {
-
-                    if (ciudad.Id > 0)
+                /*try
+                {*/
+                    if (ciudad.Id < 0)
                     {
-                        _ciudadService.Actualizar(ciudad);
+                        ModelState.AddModelError("Id", "El codigo no puede ser negativo");
+                        return View("Editar", ciudad);
                     }
                     else
                     {
-                        _ciudadService.Ingresar(ciudad);
-                    }
 
-                    return RedirectToAction("Index");
-                }
+                        if (ciudad.Id > 0)
+                        {
+                            _ciudadService.Actualizar(ciudad);
+                        }
+                        else
+                        {
+                            _ciudadService.Ingresar(ciudad);
+                        }
+
+                        return RedirectToAction("Index");
+                    }
+                /*}
+                catch (System.Exception ex)
+                {
+
+                    ModelState.AddModelError("Nombre", ex.Message);
+                    return View("Editar", ciudad);
+                }*/
             }
             else
             {

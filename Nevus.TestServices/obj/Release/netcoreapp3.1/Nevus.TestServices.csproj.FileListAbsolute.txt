@@ -1,0 +1,6 @@
+C:\temp\Nevus\Nevus.TestServices\bin\Release\netcoreapp3.1\CoverletSourceRootsMapping
+C:\temp\Nevus\Nevus.TestServices\obj\Release\netcoreapp3.1\Nevus.TestServices.csproj.AssemblyReference.cache
+C:\temp\Nevus\Nevus.TestServices\obj\Release\netcoreapp3.1\Nevus.TestServices.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp\Nevus\Nevus.TestServices\obj\Release\netcoreapp3.1\Nevus.TestServices.AssemblyInfoInputs.cache
+C:\temp\Nevus\Nevus.TestServices\obj\Release\netcoreapp3.1\Nevus.TestServices.AssemblyInfo.cs
+C:\temp\Nevus\Nevus.TestServices\obj\Release\netcoreapp3.1\Nevus.TestServices.csproj.CoreCompileInputs.cache

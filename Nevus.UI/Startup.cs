@@ -1,21 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Nevus.Data;
 using Nevus.Data.Repositories;
 using Nevus.Services;
-using Nevus.UI.Infrastructure;
+using Nevus.UI.Data;
+using Nevus.UI.Hubs;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nevus.UI
 {
@@ -32,8 +31,8 @@ namespace Nevus.UI
         public void ConfigureServices(IServiceCollection services)
         {
             var cc = Configuration.GetConnectionString("Server");
-
-            services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(cc));
+            services.AddTransient<IMemoryCache, MemoryCache>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(cc));
             services.AddDbContext<IdentityAppDbContext>(options => options.UseSqlServer(cc));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<IdentityAppDbContext>();
@@ -41,6 +40,13 @@ namespace Nevus.UI
             services.AddTransient<ICiudadRepository, CiudadRepository>();
             services.AddTransient<ICiudadService, CiudadService>();
             services.AddTransient<IDepartamentoService, DepartamentoService>();
+
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromSeconds(10);
+            }
+             );
+            services.AddSignalR();
 
         }
 
@@ -74,17 +80,20 @@ namespace Nevus.UI
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ArchivosStaticos")),
 
             }); ;
+            
+            app.UseSession();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Ciudad}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>($"/{nameof(ChatHub)}");
             });
+            
 
         }
     }

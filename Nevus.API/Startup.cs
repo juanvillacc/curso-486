@@ -1,19 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Nevus.Data;
 using Nevus.Data.Repositories;
 using Nevus.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nevus.API
 {
@@ -38,6 +32,12 @@ namespace Nevus.API
             services.AddTransient<IDepartamentoService, DepartamentoService>();
 
             services.AddControllers();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.HandshakeTimeout = TimeSpan.FromSeconds(30);
+                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(50);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,10 +54,8 @@ namespace Nevus.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            
+
         }
     }
 }

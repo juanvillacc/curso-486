@@ -13,6 +13,7 @@ namespace Nevus.Models
         public Int64 Id { get; set; }
         [Required(ErrorMessage = "Debe llenar el departamento")]
         public string Nombre { get; set; }
+        public bool EstaActivo { get; set; }
         public virtual ICollection<Ciudad> Ciudad { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using Nevus.Data.Repositories;
 using Nevus.Models;
 using System;
@@ -10,11 +11,18 @@ namespace Nevus.Services
     public class CiudadService  : ICiudadService
     {
         private readonly ILogger<CiudadService> _logger;
-        private readonly ICiudadRepository _ciudadRepository;  
-        public CiudadService(ICiudadRepository ciudadRepository, ILogger<CiudadService> logger)
+        private readonly ICiudadRepository _ciudadRepository;
+        //private readonly IMemoryCache _cache;
+
+        public CiudadService(
+            ICiudadRepository ciudadRepository,
+            ILogger<CiudadService> logger
+            //,IMemoryCache cache
+            )
         {
             _ciudadRepository = ciudadRepository;   
             _logger = logger;
+            //_cache = cache;
         }
 
         public void Actualizar(Ciudad ciudad)
@@ -46,7 +54,17 @@ namespace Nevus.Services
 
         public List<Ciudad> ObtenerTodas()
         {
-            return _ciudadRepository.Obtener().ToList();
+            List<Ciudad> ciudades;
+            /*if (!_cache.TryGetValue("Cache_Listado_ciudades",out ciudades))
+            {
+                ciudades =  _ciudadRepository.Obtener().ToList();
+                var opciones = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(100));
+                _cache.Set("Cache_Listado_ciudades", ciudades, opciones);
+                
+            }*/
+            ciudades = _ciudadRepository.Obtener().ToList();
+      
+            return ciudades;
         }
     }
 }

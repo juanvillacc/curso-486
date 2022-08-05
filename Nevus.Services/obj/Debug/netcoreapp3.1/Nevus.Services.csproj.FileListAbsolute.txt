@@ -13,3 +13,7 @@ C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.CoreC
 C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.csproj.CopyComplete
 C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.dll
 C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.pdb
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\appsettings.json
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.runtimeconfig.json
+C:\temp\Nevus\Nevus.Services\bin\Debug\netcoreapp3.1\Nevus.Services.runtimeconfig.dev.json
+C:\temp\Nevus\Nevus.Services\obj\Debug\netcoreapp3.1\Nevus.Services.genruntimeconfig.cache

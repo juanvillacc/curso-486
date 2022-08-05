@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Nevus.Models;
 using Nevus.Services;
 using System.Linq;
+using System.Text;
 
 namespace Nevus.UI.Controllers
 {
@@ -26,6 +27,12 @@ namespace Nevus.UI.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            byte[] bytes;
+            HttpContext.Session.TryGetValue("Ultima_ciudad_consultada", out bytes);
+            if (bytes != null)
+            {
+                TempData["ultimaCiudad"] = Encoding.ASCII.GetString(bytes);
+            }
             return View(_ciudadService.ObtenerTodas());
         }
         /// <summary>
@@ -47,8 +54,14 @@ namespace Nevus.UI.Controllers
                 return Content("Parametro no valido");
 
             }*/
+
             var ciudad = _ciudadService.ObtenerTodas()
-                .Where(c => c.Id == IdCiudad).FirstOrDefault();
+                .Where(c => c.Id ==
+                IdCiudad).FirstOrDefault();
+
+            byte[] bytes = Encoding.ASCII.GetBytes(ciudad.Nombre);
+            HttpContext.Session.Set("Ultima_ciudad_consultada", bytes);
+
             return View(ciudad ?? new Ciudad());
         }
         /// <summary>
@@ -64,25 +77,25 @@ namespace Nevus.UI.Controllers
 
                 /*try
                 {*/
-                    if (ciudad.Id < 0)
+                if (ciudad.Id < 0)
+                {
+                    ModelState.AddModelError("Id", "El codigo no puede ser negativo");
+                    return View("Editar", ciudad);
+                }
+                else
+                {
+
+                    if (ciudad.Id > 0)
                     {
-                        ModelState.AddModelError("Id", "El codigo no puede ser negativo");
-                        return View("Editar", ciudad);
+                        _ciudadService.Actualizar(ciudad);
                     }
                     else
                     {
-
-                        if (ciudad.Id > 0)
-                        {
-                            _ciudadService.Actualizar(ciudad);
-                        }
-                        else
-                        {
-                            _ciudadService.Ingresar(ciudad);
-                        }
-
-                        return RedirectToAction("Index");
+                        _ciudadService.Ingresar(ciudad);
                     }
+
+                    return RedirectToAction("Index");
+                }
                 /*}
                 catch (System.Exception ex)
                 {

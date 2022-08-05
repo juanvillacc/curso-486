@@ -16,6 +16,8 @@ namespace Nevus.Models
         public string Nombre { get; set; }
         [DisplayName("Esta activa la ciudad?")]
         public bool EstaActiva { get; set; }
+        [MaxLength(20)]
+        public string Abreviatura { get; set; }
         public virtual Departamento Departamento { get; set; }
     }
 }

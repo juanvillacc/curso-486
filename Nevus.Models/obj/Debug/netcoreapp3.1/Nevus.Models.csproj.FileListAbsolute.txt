@@ -8,3 +8,6 @@ C:\temp\Nevus\Nevus.Models\obj\Debug\netcoreapp3.1\Nevus.Models.AssemblyInfo.cs
 C:\temp\Nevus\Nevus.Models\obj\Debug\netcoreapp3.1\Nevus.Models.csproj.CoreCompileInputs.cache
 C:\temp\Nevus\Nevus.Models\obj\Debug\netcoreapp3.1\Nevus.Models.dll
 C:\temp\Nevus\Nevus.Models\obj\Debug\netcoreapp3.1\Nevus.Models.pdb
+C:\temp\Nevus\Nevus.Models\bin\Debug\netcoreapp3.1\Nevus.Models.runtimeconfig.json
+C:\temp\Nevus\Nevus.Models\bin\Debug\netcoreapp3.1\Nevus.Models.runtimeconfig.dev.json
+C:\temp\Nevus\Nevus.Models\obj\Debug\netcoreapp3.1\Nevus.Models.genruntimeconfig.cache

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -15,13 +16,15 @@ namespace Nevus.TestServices
     {
         private CiudadService ObtenerServicio()
         {
+
             var mockILogger = new Mock<ILogger<CiudadService>>();
-            string cc = "Server=tcp:servercurso486.database.windows.net,1433;Initial Catalog=datacurso486;Persist Security Info=False;User ID=admincrud;Password=Pa55w.rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30; ";
+            var mockCache = new Mock<IMemoryCache>();
+            string cc = "Server=tcp:servercurso486.database.windows.net,1433;Initial Catalog=datacurso486;Persist Security Info=False;User ID=admincrud;Password=Pa55w.rd;MultipleActiveResultSets=False;  ;Connection Timeout=30; ";
             var options =
                 new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(cc).Options;
             AppDbContext appDbContext = new AppDbContext(options);
             CiudadRepository ciudadRepository = new CiudadRepository(appDbContext);
-            CiudadService ciudadService = new CiudadService(ciudadRepository, mockILogger);
+            CiudadService ciudadService = new CiudadService(ciudadRepository, (ILogger<CiudadService>)mockILogger, (IMemoryCache)mockCache);
 
             return ciudadService;
         }

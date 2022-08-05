@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+$(document).ready(function() {
+
+    var connection = new signalR.HubConnectionBuilder()
+        .withUrl('/ChatHub')
+        .build();
+
+        connection.on("ReceiveMessage", (user, message) => {
+             var lista = document.getElementById('messageList');
+            var itemLista = document.createElement('li');
+            itemLista.textContent = message;
+            lista.appendChild(itemLista);
+        
+        });
+
+
+      connection.start();
+
+    
+
+    document.getElementById('btnEnviar').addEventListener("click", function(event) {
+        var mensaje = document.getElementById('messagebox').value;
+        connection.invoke("SendMessage", "camilo", mensaje);
+        event.preventDefault();
+    });
+
+});
+
+
+</script>
+<div class="container">
+    <form id="messageform">
+        <input type="text" id="messagebox" />
+        <input type="button" value="Enviar" id="btnEnviar" />
+    </form>
+    <Hr>
+        <ul id="messageList">
+        </ul>
+</div>
